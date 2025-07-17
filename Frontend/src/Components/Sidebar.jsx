@@ -28,7 +28,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     localStorage.removeItem('token');
     localStorage.removeItem('id');
     setTimeout(() => {
-      navigate('/loginpage');
+      navigate('/');
     }, 1000);
     toast.success('Logged off');
     // Delay navigation by 1 second (1000 ms)
