@@ -116,7 +116,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               </div>
             </Link>
 
-            <Link to="/" onClick={switchToUser}>
+            <Link to="/login" onClick={switchToUser}>
               <div className="flex items-center px-4 py-2 hover:bg-[#4B5C9C] rounded">
                 <PowerIcon className="h-6 w-6" />
                 {isOpen && <span className="ml-3"> Switch To User </span>}
