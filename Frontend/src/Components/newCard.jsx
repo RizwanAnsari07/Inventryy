@@ -24,7 +24,7 @@ export default function IceCreamCard({
       return;
     }
     try {
-      const res = await fetch(`http://localhost:5050/productRoutes/${id}/stock`, {
+      const res = await fetch(`https://inventryy.onrender.com/productRoutes/${id}/stock`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ stock: newStock }),

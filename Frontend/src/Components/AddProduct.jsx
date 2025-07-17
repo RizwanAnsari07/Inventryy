@@ -32,7 +32,7 @@ const AddProduct = ({ isSidebarOpen }) => {
     };
 
     try {
-      const res = await axios.post('http://localhost:5050/productRoutes/addproduct', payload);
+      const res = await axios.post('https://inventryy.onrender.com/productRoutes/addproduct', payload);
       toast.success("Product Added Successfully")
       console.log('Response:', res.data);
 

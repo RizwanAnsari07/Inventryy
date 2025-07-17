@@ -7,7 +7,7 @@ const LatestProducts = ( {isSidebarOpen} ) => {
   const [searchLProducts, setSearchLProducts] = useState("");
 
  useEffect(() => {
-  fetch("http://localhost:5050/productRoutes/latestproducts")
+  fetch("https://inventryy.onrender.com/productRoutes/latestproducts")
     .then(res => {
       if (!res.ok) throw new Error(res.statusText);
       return res.json();

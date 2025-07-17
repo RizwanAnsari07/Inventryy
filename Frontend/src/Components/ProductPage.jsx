@@ -13,7 +13,7 @@ const ProductPage = ( {isSidebarOpen} ) => {
     if(!localStorage.getItem("token")){
       navigate("/loginpage");
     }
-    fetch("http://localhost:5050/productRoutes/allproducts", {
+    fetch("https://inventryy.onrender.com/productRoutes/allproducts", {
       method: "POST",
     })
       .then((res) => res.json())
@@ -27,7 +27,7 @@ const ProductPage = ( {isSidebarOpen} ) => {
   // For Deleting Product
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5050/productRoutes/${id}`);
+      await axios.delete(`https://inventryy.onrender.com/productRoutes/${id}`);
       toast.success("Product deleted successfully");
   
       setProducts((prev) => prev.filter((item) => item._id !== id));

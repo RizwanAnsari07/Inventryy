@@ -19,7 +19,7 @@ const SignupPage = ({ isSidebarOpen }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5050/userRoutes/signup', {
+      const response = await fetch('https://inventryy.onrender.com/userRoutes/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(signUpData)

@@ -15,7 +15,7 @@ const LoginPage = ({ isSidebarOpen }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5050/userRoutes/login", {
+      const response = await fetch("https://inventryy.onrender.com/userRoutes/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -9,7 +9,7 @@ const ActiveAdmin = ( {isSidebarOpen} ) => {
 //   const id = localStorage.getItem(id);
 
   useEffect(() => {
-    axios.get("http://localhost:5050/userRoutes/users")
+    axios.get("https://inventryy.onrender.com/userRoutes/users")
       .then((res) => setAdmins(res.data))
       .catch((err) => {
         console.error("Failed to fetch admins", err);
@@ -19,7 +19,7 @@ const ActiveAdmin = ( {isSidebarOpen} ) => {
 
   const handleDelete = async (id) => {
     try {
-      await axios.delete(`http://localhost:5050/userRoutes/users/${id}`);
+      await axios.delete(`https://inventryy.onrender.com/userRoutes/users/${id}`);
       setAdmins(prev => prev.filter(admin => admin._id !== id));
       toast.success("Admin deleted");
     } catch (err) {
