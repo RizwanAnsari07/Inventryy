@@ -17,7 +17,7 @@ const App = () => {
       {/* <Sidebar/> */}<Toaster position="top-center" richColors/>
       <Routes>
 
-        <Route path="/loginpage" element={ <ProductPageLayout/> }/>
+        <Route path="/" element={ <ProductPageLayout/> }/>
         <Route path="/latest-products" element={ <UserRoute> <LatestProductLayout/> </UserRoute> }/>
 
         <Route path="/login" element={ <LoginPageLayout/> }/>
