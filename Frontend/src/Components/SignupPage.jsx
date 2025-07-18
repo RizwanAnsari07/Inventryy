@@ -43,8 +43,8 @@ const SignupPage = ({ isSidebarOpen }) => {
     }
   };
 
+
   return (
-    
     <section
       className={`transition-all duration-300 p-4 ${
         isSidebarOpen ? 'ml-64' : 'ml-16'

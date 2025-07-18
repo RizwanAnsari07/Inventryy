@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { toast } from "sonner";
 import IceCreamCard from './newCard';
   
 const LessStock = ( {isSidebarOpen} ) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [products,setProducts] = useState([])
+  const [loading,setLoading] = useState(true)
   const [searchProducts, setSearchProducts] = useState("");
   const [lessStockItems, setLessStockItems] = useState([]);
 
@@ -20,7 +21,7 @@ const LessStock = ( {isSidebarOpen} ) => {
       .then((res) => res.json())
       .then((data) => {
         setProducts(data)
-        
+        setLoading(false);
       });
   }, []);
 
@@ -33,8 +34,6 @@ const LessStock = ( {isSidebarOpen} ) => {
     item.name.toLowerCase().includes(searchProducts.toLowerCase())
   );
 
-
-  // For Deleting Product
   const handleDelete = async (id) => {
     try {
       await axios.delete(`https://inventryy.onrender.com/productRoutes/${id}`);
@@ -46,14 +45,22 @@ const LessStock = ( {isSidebarOpen} ) => {
       toast.error("Failed to delete product");
     }
   };
+
+  if (loading) {
+    return (
+      <div className="w-full flex justify-center items-center h-[90vh]">
+        <img className="w-7 h-7" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif" alt="" />
+          <p className="ml-2 text-lg text-blue-600">Loading Products...</p>
+      </div>
+    );
+  }
   
 
   return (
     <>
     <div className={`transition-all duration-300 p-4 ${isSidebarOpen ? "ml-64" : "ml-16"} w-full max-w-[1440px] mx-auto`}>
-      
-      {/* Search Form */}
-          
+
+      {/* Search Form */}       
       <form
           className="flex items-center max-w-xl"
           onSubmit={(e) => e.preventDefault()}>   
@@ -74,7 +81,6 @@ const LessStock = ( {isSidebarOpen} ) => {
               </svg>Search
           </button>
       </form>
-
 
       {/* Cards flex */}
       <div className="flex flex-row flex-wrap justify-evenly mt-6 space-x-4 space-y-4">

@@ -13,46 +13,41 @@ router.post("/allproducts", async (req, res) => {
 
 
 router.post('/addproduct', async (req, res) => {
-    try {
-        const {
-            name,
-            manufacturing_date,
-            expiry_date,
-            stock,
-            price,
-            image_url
-        } = req.body;
-        if (!name || !manufacturing_date || !expiry_date || !stock || !price || !image_url) {
-            return res.json({ error: "All feilds are required!" });
-        }
-        // Create a new product document
-        const newProduct = new Product({
-            name,
-            manufacturing_date: new Date(manufacturing_date),
-            expiry_date: new Date(expiry_date),
-            stock,
-            price,
-            image_url,
-        });
-
-        await newProduct.save();
-
-        res.status(201).json({
-            success: true,
-            message: 'Product added successfully',
-            product: newProduct,
-        });
-    } catch (error) {
-        console.error('Error adding product:', error);
-        res.status(400).json({
-            success: false,
-            error: error.message,
-        });
+  try {
+    const {
+        name,
+        manufacturing_date,
+        expiry_date,
+        stock,
+        price,
+        image_url
+    } = req.body;
+    if (!name || !manufacturing_date || !expiry_date || !stock || !price || !image_url) {
+        return res.json({ error: "All feilds are required!" });
     }
-
-    
-
+    const newProduct = new Product({
+        name,
+        manufacturing_date: new Date(manufacturing_date),
+        expiry_date: new Date(expiry_date),
+        stock,
+        price,
+        image_url,
+    });
+    await newProduct.save();
+    res.status(201).json({
+        success: true,
+        message: 'Product added successfully',
+        product: newProduct,
+    });
+  } catch (error) {
+      console.error('Error adding product:', error);
+      res.status(400).json({
+          success: false,
+          error: error.message,
+      });
+  } 
 });
+
 
 router.delete('/:id', async (req, res) => {
   let id = req.params.id.trim();
@@ -60,7 +55,6 @@ router.delete('/:id', async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: 'Invalid product ID' });
   }
-
   try {
     const deleted = await Product.findOneAndDelete({ _id: id });
     if (!deleted) {
@@ -72,6 +66,7 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
 
 router.put('/:id/stock', async (req, res) => {
   try {
@@ -98,7 +93,6 @@ router.put('/:id/stock', async (req, res) => {
 });
 
 
-// GET the latest N products
 router.get('/latestproducts', async (req, res) => {
   try {
     const N = parseInt(req.query.limit) || 10; // default to 5
@@ -118,7 +112,5 @@ router.get('/latestproducts', async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 });
-
-
 
 export default router;

@@ -36,7 +36,6 @@ const AddProduct = ({ isSidebarOpen }) => {
       toast.success("Product Added Successfully")
       console.log('Response:', res.data);
 
-      // Reset form
       setProduct({
         name: '',
         description: '',
@@ -51,6 +50,7 @@ const AddProduct = ({ isSidebarOpen }) => {
       alert('Error adding product: ' + (err.response?.data?.error || err.message));
     }
   };
+
 
   return (
     <>

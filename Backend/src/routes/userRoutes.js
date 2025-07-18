@@ -1,18 +1,19 @@
-import { Router } from "express"; // Import Router from express
-const router = Router();
-// import { JsonWebTokenError } from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
+import { Router } from "express";
 import jwt from "jsonwebtoken";
-import User from "../models/userModel.js"; // Import User model
-dotenv.config(); // Load environment variables
-const Admin_code = process.env.Admin_code; // Get admin code from environment variables
+import User from "../models/userModel.js";
+const router = Router();
+dotenv.config();
+
+const Admin_code = process.env.Admin_code;
+
 router.post("/signup", async (req, res) => {
   const { name, email, password ,code} = req.body;
     if (!name || !email || !password || !code) {
     return res.status(400).json({ error: "Please fill in all fields." });
   }
-console.log('code:', JSON.stringify(code), 'Admin_code:', JSON.stringify(Admin_code));
+    console.log('code:', JSON.stringify(code), 'Admin_code:', JSON.stringify(Admin_code));
     if (code != Admin_code) {
     return res.status(403).json({ error: "Sign-up not allowed as you are not Admin." });
   }
@@ -31,6 +32,7 @@ console.log('code:', JSON.stringify(code), 'Admin_code:', JSON.stringify(Admin_c
     res.status(500).json({ error: "Error occurred" });
   }
 })
+
 
 router.delete("/users/:id", async (req, res) => {
   try {
@@ -69,9 +71,11 @@ router.post("/login", async (req, res) => {
     return res.status(500).json({ error: "Login error: " + err.message });
   }
 });
+
+
 router.get('/users', async (req, res, next) => {
   try {
-    const excludeId = process.env.Admin_id; // Get the admin ID from environment variables
+    const excludeId = process.env.Admin_id;
     const filter = excludeId ? { _id: { $ne: excludeId } } : {};
 
     const users = await User.find(filter);
@@ -80,6 +84,5 @@ router.get('/users', async (req, res, next) => {
     next(err);
   }
 });
-
 
 export default router;

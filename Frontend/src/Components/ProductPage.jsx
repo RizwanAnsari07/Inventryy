@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { toast } from "sonner";
 import IceCreamCard from './newCard';
   
 const ProductPage = ( {isSidebarOpen} ) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const [products,setProducts] = useState([])
+  const [loading,setLoading] = useState(true)
   const [searchProducts, setSearchProducts] = useState("");
 
   useEffect(()=>{
@@ -16,11 +17,11 @@ const ProductPage = ( {isSidebarOpen} ) => {
     fetch("https://inventryy.onrender.com/productRoutes/allproducts", {
       method: "POST",
     })
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data)
-        
-      });
+    .then((res) => res.json())
+    .then((data) => {
+      setProducts(data)
+      setLoading(false);
+    });
   }, []);
 
 
@@ -41,6 +42,14 @@ const ProductPage = ( {isSidebarOpen} ) => {
     item.name.toLowerCase().includes(searchProducts.toLowerCase())
   );
 
+  if (loading) {
+    return (
+      <div className="w-full flex justify-center items-center h-[90vh]">
+        <img className="w-7 h-7" src="https://upload.wikimedia.org/wikipedia/commons/c/c7/Loading_2.gif" alt="" />
+          <p className="ml-2 text-lg text-blue-600">Loading Products...</p>
+      </div>
+    );
+  }
 
   return (
     <>

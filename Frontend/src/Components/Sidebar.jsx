@@ -1,10 +1,10 @@
 import { HomeIcon, PlusCircleIcon, PowerIcon, ShoppingBagIcon, ShoppingCartIcon, UsersIcon } from "@heroicons/react/24/solid";
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { toast } from "sonner";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [name, setName] = useState(() => localStorage.getItem('name') || '');
   const [role, setRole] = useState(() => localStorage.getItem("role") || "user");
@@ -16,7 +16,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   };
 
   useEffect(() => {
-    // listen for storage changes in other tabs (optional)
     const onStorage = (e) => {
       if (e.key === 'name') setName(e.newValue || '');
     };
@@ -61,7 +60,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 
 
         {/* Admin Panel */}
-
         {role === "admin" && (
           <>
             <Link to="/">
@@ -127,12 +125,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             {isOpen && <span className="">{name}</span>}
           </div>
 
-          {/* <Link to="/" className="flex items-center px-4 py-2 mb-5 hover:bg-[#4B5C9C] rounded"
-            onClick={switchToUser}>
-            <PowerIcon className="h-6 w-6" />
-            {isOpen && <span className="ml-3">Logout</span>}
-          </Link> */}
-
         </div>
       )}
 
@@ -142,7 +134,3 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
 };
 
 export default Sidebar;
-
-/*
-
-*/
