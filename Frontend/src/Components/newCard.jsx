@@ -54,7 +54,7 @@ export default function IceCreamCard({
         </div>
         <div className="mt-4">
           <h2 className="text-lg font-semibold text-gray-700">{name}</h2>
-          <p className="text-sm text-gray-500 mt-1 pb-5">{description}</p>
+          <p className="text-sm text-gray-500 mt-1 pb-5">This is a good product available on my mall.{description}</p>
           <p className="text-sm text-gray-500 mt-1 ">Quintity:{stock}</p>
           <div className="mt-4 flex justify-between items-center">
             <span className="text-blue-700 font-semibold">Rs {price}</span>
