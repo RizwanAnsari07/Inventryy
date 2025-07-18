@@ -59,11 +59,11 @@ const LoginPage = ({ isSidebarOpen }) => {
   };
 
   // For admin login
-  const switchToAdmin = () => {
-    setRole("admin");
-    localStorage.setItem("role", "admin");
-    toast.success("Switched to Admin Panel");
-  };
+  // const switchToAdmin = () => {
+  //   setRole("admin");
+  //   localStorage.setItem("role", "admin");
+  //   toast.success("Switched to Admin Panel");
+  // };
 
 
   return (

@@ -24,16 +24,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     return () => window.removeEventListener('storage', onStorage);
   }, []);
 
-  const logout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('id');
-    setTimeout(() => {
-      navigate('/loginpage');
-    }, 1000);
-    toast.success('Logged off');
-    // Delay navigation by 1 second (1000 ms)
-  };
-
 
   return (
     <div className={`fixed z-10 flex flex-col h-screen bg-[#3E4E88] text-white transition-all duration-300 ${isOpen ? "w-64" : "w-16"}`}>

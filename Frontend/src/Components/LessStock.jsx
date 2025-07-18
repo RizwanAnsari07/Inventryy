@@ -12,7 +12,7 @@ const LessStock = ( {isSidebarOpen} ) => {
 
   useEffect(()=>{
     if(!localStorage.getItem("token")){
-      navigate("/loginpage");
+      // navigate("/loginpage");
     }
     fetch("https://inventryy.onrender.com/productRoutes/allproducts", {
       method: "POST",
